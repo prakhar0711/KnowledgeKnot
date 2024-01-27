@@ -1,0 +1,68 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content %}
+<style>
+    /* Add your custom styles here */
+
+    section {
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    .custom-header {
+        background-color: #4285f4;
+        color: #fff;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .custom-header:hover {
+        background-color: #3c78d8;
+    }
+
+    .description {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #555;
+    }
+</style>
+
+<section class='text-center container'>
+    <h2>Search articles in wikipedia</h2>
+    <b>Enter without any space</b>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input class="btn btn-danger" type="submit" value="Submit">
+    </form><br>
+
+    <div class="container">
+        <div class="content-section p-0 mt-5">
+            <a href="" class="p-0 m-0" target="_blank">
+                <div class="custom-header">
+                    <h2>{{title}}</h2>{{title}}
+                    <h6>{{link}}</h6>
+                </div>
+            </a>
+
+            <hr class="p-0 m-0">
+            <p class="description m-5 p-5">
+                {{details}}
+            </p>
+            <hr>
+        </div>
+    </div>
+
+</section>
+
+{% endblock content %}
