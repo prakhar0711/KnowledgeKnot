@@ -6,14 +6,21 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from youtubesearchpython import VideosSearch
 import requests
+from .models import *
 
 
 # Create your views here.
+# """
+# This function takes a request parameter and returns the rendered 'dashboard/home.html' template.
+# """
 def home(request):
     return render(request, 'dashboard/home.html')
 
 
 # VIEWS FOR NOTES SECTION
+
+# This function handles the notes request. It requires the request object as a parameter
+# and returns a rendered notes template. It also creates a new note if the request method is POST.
 @login_required
 def notes(request):
     if request.method == 'POST':
@@ -32,6 +39,18 @@ def notes(request):
         }
         return render(request, 'dashboard/notes.html', context)
 
+    # """
+    # Deletes a note with the given primary key.
+    #
+    # Args:
+    #     request: The request object.
+    #     pk: The primary key of the note to be deleted.
+    #
+    # Returns:
+    #     A redirect to the 'notes' page.
+    # """
+
+
 @login_required
 def delete_note(request, pk):
     Notes.objects.get(id=pk).delete()
@@ -42,7 +61,12 @@ class NotesDetailView(generic.DetailView):
     model = Notes
 
 
-@login_required# VIEWS FOR HOMEWORK SECTION
+# VIEWS FOR HOMEWORK SECTION
+#     """
+#     A view function for handling homework creation and rendering the homework template.
+#     Takes a request object and returns an HTTP response.
+#     """
+@login_required
 def homework(request):
     if request.method == 'POST':
         form = HomeworkForm(request.POST)
@@ -80,20 +104,54 @@ def homework(request):
     }
     return render(request, 'dashboard/homework.html', context)
 
+    # """
+    # Updates the status of a homework task and redirects to the 'homework' page.
+    #
+    # Args:
+    #     request: The HTTP request object.
+    #     pk: The primary key of the homework task to be updated.
+    #
+    # Returns:
+    #     HttpResponseRedirect: Redirects to the 'homework' page.
+    # """
+
+
 @login_required
 def update_homework(request, pk):
     homework = Homework.objects.get(id=pk)
-    if homework.is_finished == True:
+    if homework.is_finished:
         homework.is_finished = False
     else:
         homework.is_finished = True
     homework.save()
     return redirect('homework')
 
+    # """
+    # Delete a homework item.
+    #
+    # Args:
+    #     request: The HTTP request object.
+    #     pk: The primary key of the homework item to be deleted.
+    #
+    # Returns:
+    #     A redirect to the 'homework' page.
+    # """
+
+
 @login_required
 def delete_homework(request, pk):
     Homework.objects.get(id=pk).delete()
     return redirect('homework')
+
+    # """
+    # Process a POST request to search for videos and display the results using the YouTube API.
+    #
+    # Args:
+    #     request: HttpRequest object containing the request data.
+    #
+    # Returns:
+    #     HttpResponse object rendering the 'dashboard/YouTube.html' template with the search results.
+    # """
 
 
 # YOUTUBE SECTION
@@ -129,6 +187,9 @@ def youtube(request):
 
 
 # TO_DO SECTION
+#     """
+#     A view for creating and listing_todo items for the logged-in user.
+#     """
 @login_required
 def todo(request):
     if request.method == 'POST':
@@ -164,6 +225,18 @@ def todo(request):
     }
     return render(request, 'dashboard/todo.html', context)
 
+    # """
+    # Update the status of a_todo item.
+    #
+    # Args:
+    #     request: The request object.
+    #     pk: The primary key of the_todo item to be updated.
+    #
+    # Returns:
+    #     A redirect to the_todo page.
+    # """
+
+
 @login_required
 def update_todo(request, pk):
     Any = Todo.objects.get(id=pk)
@@ -174,6 +247,18 @@ def update_todo(request, pk):
     Any.save()
     return redirect('todo')
 
+    # """
+    # Delete a to-do item.
+    #
+    # Args:
+    #     request: The HTTP request object.
+    #     pk: The primary key of the to-do item to be deleted.
+    #
+    # Returns:
+    #     A redirection to the_todo page.
+    # """
+
+
 @login_required
 def delete_todo(request, pk=None):
     Todo.objects.get(id=pk).delete()
@@ -181,6 +266,9 @@ def delete_todo(request, pk=None):
 
 
 # BOOKS SECTION
+#     """
+#     Takes a request object and returns a rendered books dashboard with search results.
+#     """
 def books(request):
     if request.method == 'POST':
         form = DashboardForm(request.POST)
@@ -209,6 +297,17 @@ def books(request):
         form = DashboardForm()
     context = {'form': form}
     return render(request, 'dashboard/books.html', context)
+
+    # """
+    # Retrieves dictionary data from an API based on the given text input and renders
+    # it in the dashboard dictionary page.
+    #
+    # Args:
+    #     request: The HTTP request object.
+    #
+    # Returns:
+    #     The rendered dictionary page with the retrieved dictionary data.
+    # """
 
 
 # DICTIONARY SECTION
@@ -245,6 +344,13 @@ def dictionary(request):
         context = {'form': form}
     return render(request, 'dashboard/dictionary.html', context)
 
+    # """
+    # Takes a request object and renders a wiki page based on the request method.
+    # If the method is POST, it retrieves the text from the request, creates a DashboardForm,
+    # searches Wikipedia for the text, and renders the wiki page with the search results.
+    # If the method is not POST, it creates a DashboardForm and renders the wiki page with the form.
+    # """
+
 
 # WIKIPEDIA SECTION
 def wiki(request):
@@ -264,6 +370,16 @@ def wiki(request):
         context = {'form': form}
     return render(request, 'dashboard/wiki.html', context)
 
+    # """
+    # Register a user based on the request and return the rendered registration page.
+    #
+    # Args:
+    #     request: The HTTP request object containing the user's data.
+    #
+    # Returns:
+    #     A rendered registration page.
+    # """
+
 
 def register(request):
     if request.method == 'POST':
@@ -276,25 +392,29 @@ def register(request):
     else:
         form = UserRegistrationForm()
     context = {'form': form}
-    return render(request, 'dashboard/register.html',context)
+    return render(request, 'dashboard/register.html', context)
+
+    # """ This function is the profile view for the user. It requires a request object as a parameter and returns a
+    # rendered profile page with the user's homeworks, todos, and their completion status. """
+
 
 @login_required
 def profile(request):
-    homeworks=Homework.objects.filter(is_finished=False,user=request.user)
-    todos=Todo.objects.filter(is_finished=False,user=request.user)
-    if len(homeworks)==0:
-        homework_done=True
+    homeworks = Homework.objects.filter(is_finished=False, user=request.user)
+    todos = Todo.objects.filter(is_finished=False, user=request.user)
+    if len(homeworks) == 0:
+        homework_done = True
     else:
-        homework_done=False
-    if len(todos)==0:
-        todos_done=True
+        homework_done = False
+    if len(todos) == 0:
+        todos_done = True
     else:
-        todos_done=False
-    context={
-        'homeworks':homeworks,
-        'todos':todos,
-        'homework_done':homework_done,
-        'todo_done':todos_done
+        todos_done = False
+    context = {
+        'homeworks': homeworks,
+        'todos': todos,
+        'homework_done': homework_done,
+        'todo_done': todos_done
     }
 
-    return render(request, 'dashboard/profile.html',context)
+    return render(request, 'dashboard/profile.html', context)
