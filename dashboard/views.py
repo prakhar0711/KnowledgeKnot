@@ -19,8 +19,8 @@ def home(request):
 
 # VIEWS FOR NOTES SECTION
 
-# This function handles the notes request. It requires the request object as a parameter
-# and returns a rendered notes template. It also creates a new note if the request method is POST.
+# This function handles the note request. It requires the request object as a parameter
+# and returns a rendered notes template. It also creates a new note if the request method is POSTed.
 @login_required
 def notes(request):
     if request.method == 'POST':
@@ -346,9 +346,9 @@ def dictionary(request):
 
     # """
     # Takes a request object and renders a wiki page based on the request method.
-    # If the method is POST, it retrieves the text from the request, creates a DashboardForm,
+    # If the method is POSTed, it retrieves the text from the request, creates a DashboardForm,
     # searches Wikipedia for the text, and renders the wiki page with the search results.
-    # If the method is not POST, it creates a DashboardForm and renders the wiki page with the form.
+    # If the method is not POSTed, it creates a DashboardForm and renders the wiki page with the form.
     # """
 
 
@@ -395,7 +395,7 @@ def register(request):
     return render(request, 'dashboard/register.html', context)
 
     # """ This function is the profile view for the user. It requires a request object as a parameter and returns a
-    # rendered profile page with the user's homeworks, todos, and their completion status. """
+    # rendered profile page with the user's homework, todos, and their completion status. """
 
 
 @login_required
