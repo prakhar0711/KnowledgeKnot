@@ -9,7 +9,7 @@
             "src": "/(.*)",
             "dest": "KnowledgeKnot/wsgi.py"
         }
-    ],
+    ]
 
 
 }
