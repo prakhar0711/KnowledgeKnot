@@ -9,5 +9,7 @@
             "src": "/(.*)",
             "dest": "KnowledgeKnot/wsgi.py"
         }
-    ]
+    ],
+    "runtime": "python3.9"
+
 }
