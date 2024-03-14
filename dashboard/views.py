@@ -7,7 +7,7 @@ from .forms import *
 from youtubesearchpython import VideosSearch
 import requests
 from .models import *
-
+from django.contrib.auth import logout
 
 # Create your views here.
 # """
@@ -418,3 +418,6 @@ def profile(request):
     }
 
     return render(request, 'dashboard/profile.html', context)
+def logout_view(request):
+    logout(request)
+    return redirect('login')
