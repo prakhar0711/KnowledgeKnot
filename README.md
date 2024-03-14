@@ -49,6 +49,37 @@ KnowledgeKnot is a comprehensive web application designed to streamline your lea
    python manage.py runserver
    ```
 
+# Images
 
-   
+## Home Page
+![Home Page](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/1d8faec8-9e44-4644-9e19-81ca609dbb97)
 
+## SignUp Page
+![SignUp](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/dc17d289-8209-4fd8-b466-d0e32c79d678)
+
+## Login Page
+![LoginPage](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/e6691309-238d-4cdc-aa2e-ad88193be3f8)
+
+## Note Taking Page
+![Notes](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/cddc5973-034b-4367-bb56-fc8356468e92)
+
+## Homework Management Page
+![HomeWork](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/4ed6f978-9546-4115-a95c-0ea38227bfd2)
+
+## Youtube Search
+![youtubeSearch](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/cbb97678-6ad3-4162-9f31-58bf689c1466)
+
+## Dictionary Page
+![dictionary](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/2c4a5f1c-6084-447b-9b9f-10c867afb052)
+
+## Wikipedia
+![wikipedia](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/35111ac9-f863-4435-9eb7-d90a01959365)
+
+## Google Book Search
+![google book search](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/68c693c0-2680-41fb-ab73-8f24dd1a8f4e)
+
+## To-Do List
+![To-Do](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/e252e266-1541-4857-b792-d6a6df3aa723)
+
+## Profile Page
+![profile page](https://github.com/prakhar0711/KnowledgeKnot/assets/110115604/b2d27c91-f4f4-4c85-ad92-cf8dd033439a)
